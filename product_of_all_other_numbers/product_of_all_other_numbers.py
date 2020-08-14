@@ -2,11 +2,23 @@
 Input: a List of integers
 Returns: a List of integers
 '''
-def product_of_all_other_numbers(arr):
-    # Your code here
+def product_of_all_other_numbers(array):
+    left = [0] * len(array)
+    right = [0] * len(array)
+    out = []
 
-    pass
+    left[0] = 1
+    for x in range(1, len(array)):
+        left[x] = array[x - 1] * left[x - 1]
 
+    right[-1] = 1
+    for x in range(len(array)-1)[::-1]:
+        right[x] = array[x + 1] * right[x + 1]
+
+    for x in range(len(array)):
+        out.append(left[x] * right[x])
+
+    return out
 
 if __name__ == '__main__':
     # Use the main function to test your implementation
